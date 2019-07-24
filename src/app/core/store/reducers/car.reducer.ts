@@ -11,8 +11,11 @@ export const initialState: State = {
 
 export function reducer(state = initialState, action: fromCarActions.Actions): State {
   switch (action.type) {
-    case fromCarActions.ActionTypes.TryGetCars:
-      return state;
+    case fromCarActions.ActionTypes.LoadCarsSuccess:
+      return {
+        ...state,
+        list: action.cars
+      };
 
     default:
       return initialState;

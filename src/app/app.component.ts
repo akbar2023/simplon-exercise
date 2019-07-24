@@ -1,4 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { State } from '@core/store';
+import { LoadCars } from '@core/store/actions/car.actions';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +11,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-  constructor() {}
+  constructor(private readonly store: Store<State>) {}
 
   ngOnInit(): void {
+    this.store.dispatch(new LoadCars());
   }
 }
