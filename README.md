@@ -2,6 +2,8 @@
 
 This project was created as an exercise for Simplon students. The project has been prepared to reduce some of the installation and configuration.
 
+A mock up can be found here: https://scene.zeplin.io/project/5d3889784c4695774830feba. Don't worry if your result isn't exactly the same.
+
 ## Step 1 - Git
 
 * Get the project from Github and create your own branch. 
@@ -22,29 +24,40 @@ PUT    api/cars/${id}  - Update one (use car as body)
 DELETE api/cars/${id}  - Delete one
 ```
 
-## Step 3 - Displaying the Table
+## Step 3 - Routing
 
-* Display the data from the GET using the Angular Material: https://material.angular.io/components/table/overview
+* Create a new module for the cars
+* Set up the routing to the different components: Here's an example, but feel free to choose your own names
+
+```
+app/cars/overview
+app/cars/edit/${id}
+```
+
+## Step 4 - Displaying the Table
+
+* Display the data in a custom table following the design from the mock up.
 * Add action buttons to edit and delete. Use Material Icons for icons https://material.angular.io/components/icon/overview
 * Add a create button to create a new item
 
 I recommend both the Create and edit buttons to route to the same component. Something like:
 
-## Step 4 - Displaying the Form
+## Step 5 - Displaying the Form
 
 * Create a form for all the fields
-* Use the Angular Material Form Controls
-* Use a dropdown for Fuel Type
+* Use Angular Reactive Forms: https://angular.io/guide/reactive-forms
+* Use the Angular Material Form Controls: https://material.angular.io/components/form-field/overview
+* Use a dropdown for Fuel Type and Brands
 * Use a datepicker for start of sales and end of sales
 * Have a Save button to update any changes
 
-## Step 5 - Hooking up the Store
+## Step 6 - Hooking up the Store
 * I've already added the store for the GET all actions
 * Start with the Actions and reducers, those are the easiest to get a grasp of.
 * The Store is immutable. That means objects won't be changed, they'll need to be recreated instead. If you break the rules of immutability there will be an error. Some good reading: https://dev.to/glebec/four-ways-to-immutability-in-javascript-3b3l
 * You can find the full documentation in the ngrx docs: https://ngrx.io/docs
 
-## Step 6 - Cover everything in Tests
+## Step 7 - Cover everything in Tests
 * If you haven't been writing tests yet, this is the time to do it:
   * https://angular.io/guide/testing
   * https://ngrx.io/guide/store/testing
