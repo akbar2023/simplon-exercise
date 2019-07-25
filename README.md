@@ -40,11 +40,9 @@ app/cars/edit/${id}
 * Add action buttons to edit and delete. Use Material Icons for icons https://material.angular.io/components/icon/overview
 * Add a create button to create a new item
 
-I recommend both the Create and edit buttons to route to the same component. Something like:
-
 ## Step 5 - Displaying the Form
 
-* Create a form for all the fields
+* Create a form for all the fields, try following the design in the mock up
 * Use Angular Reactive Forms: https://angular.io/guide/reactive-forms
 * Use the Angular Material Form Controls: https://material.angular.io/components/form-field/overview
 * Use a dropdown for Fuel Type and Brands
@@ -63,8 +61,6 @@ I recommend both the Create and edit buttons to route to the same component. Som
   * https://ngrx.io/guide/store/testing
   * https://ngrx.io/guide/effects/testing
 
-## General tips
-* Write tests during the early steps. It's better practice than adding all of them at the end.
+## Tips
 * Try to strong type everything.
-* Think about architecture and modules. Don't shove everything into `Core`. Don't use too many modules either.
-* Keep the styling simple and consistent with Angular Material
+* Write tests during the early steps. It's better practice than adding all of them at the end.
