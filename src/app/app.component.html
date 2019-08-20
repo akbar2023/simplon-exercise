@@ -1,1 +1,24 @@
-Have fun
+<h1>My Renault Cars</h1>
+
+<table border="1">
+    <tr>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Fuel</th>
+      <th>Horse Power</th>
+      <th>Price</th>
+      <th>Start Of Sales</th>
+      <th>End Of Sales</th>
+    </tr>
+    <tr *ngFor="let car of cars">
+      <td>{{ car.name}}</td>
+      <td>{{ car.brand}}</td>
+      <td>€ {{ car.price}}</td>
+      <td>{{ car.fuelType}}</td>
+      <td>{{ car.horsePower}} hp</td>
+      <td>{{ car.startOfSales}}</td>
+      <td>{{ car.endOfSales}}</td>
+    </tr>
+    
+  </table>
+  

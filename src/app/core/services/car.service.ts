@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Car } from '@core/models/car';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CarService {
   private readonly baseUrl = 'api/cars/';
