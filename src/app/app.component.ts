@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State } from '@core/store';
 import { LoadCars } from '@core/store/actions/car.actions';
-import { Car } from '@core/models/car';
-import { CarService } from '@core/services/car.service';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +10,10 @@ import { CarService } from '@core/services/car.service';
 })
 export class AppComponent implements OnInit {
 
-  cars: Car[] = [];
-  
 
-  constructor(private readonly store: Store<State>, private carService: CarService) {}
+  constructor(private readonly store: Store<State>) {}
 
   ngOnInit(): void {
-    // this.store.dispatch(new LoadCars());
-  
-    this.carService.getCars().subscribe(cars => this.cars = cars);
+    this.store.dispatch(new LoadCars());  
   }
 }

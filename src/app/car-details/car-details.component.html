@@ -1,0 +1,41 @@
+<h1>{{car.brand }} {{car.name}} Details</h1>
+
+<!-- <p>{{ car | json }}</p> -->
+
+
+<table border="1">
+  <tr>
+    <th>Car ID</th>
+    <td>{{car.id}}</td>
+  </tr>
+  <tr>
+    <th>Model</th>
+    <td>{{car.name}}</td>
+  </tr>
+  <tr>
+    <th>Brand</th>
+    <td>{{car.brand}}</td>
+  </tr>
+  <tr>
+    <th>Price</th>
+    <td>€ {{car.price}}</td>
+  </tr>
+  <tr>
+    <th>Horse Power</th>
+    <td>{{car.horsePower}} hp</td>
+  </tr>
+  <tr>
+    <th>Fuel</th>
+    <td>{{car.fuelType}}</td>
+  </tr>
+  <tr>
+    <th>Start of sales</th>
+    <td>{{car.startOfSales}}</td>
+  </tr>
+  <tr>
+    <th>End of sales</th>
+    <td>{{car.endOfSales}}</td>
+  </tr>
+</table>
+
+

@@ -1,0 +1,137 @@
+<p>{{ car | json }}</p>
+
+
+
+
+
+<form class="example-form" (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="car">
+  <!-- <mat-form-field class="example-full-width">
+    <input matInput placeholder="Company (disabled)" disabled value="Google">
+  </mat-form-field> -->
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input [(ngModel)]="car.name" name="name" matInput placeholder="Name">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput [(ngModel)]="car.horsePower" name="horsePower" placeholder="Horse Power">
+        </mat-form-field>
+      </td>
+    </tr>
+
+    <tr>
+        <td>
+          <mat-form-field>
+            <mat-label>Brand</mat-label>
+            <mat-select [(ngModel)]="car.brand" name="brand">
+              <mat-option *ngFor="let brand of myBrands" [value]="brand.value">
+                {{brand.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <mat-label>Fuel Type</mat-label>
+            <mat-select [(ngModel)]="car.fuelType" name="fuelType">
+              <mat-option *ngFor="let fuel of fuelTypes" [value]="fuel.value">
+                {{fuel.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+            <mat-form-field class="example-full-width">
+              <input [(ngModel)]="car.price" name="price" matInput placeholder="Price">
+            </mat-form-field>
+        </td>
+        <td>
+          <tr>
+            <td>
+              <mat-form-field>
+                <input [(ngModel)]="car.startOfSales" name="startOfSales" matInput [matDatepicker]="startDatePicker" placeholder="Start of sales">
+                <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #startDatePicker></mat-datepicker>
+              </mat-form-field> 
+            </td>             
+            <td>
+              <mat-form-field>
+                <input [(ngModel)]="car.endOfSales" name="endOfSales" matInput [matDatepicker]="endDatePicker" placeholder="End of sales">
+                <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #endDatePicker></mat-datepicker>
+              </mat-form-field> 
+            </td>
+          </tr>             
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <button mat-flat-button color="accent">Submit</button>
+        </td>
+      </tr>
+  </table>
+
+  
+</form>
+
+
+
+
+<!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="car">
+
+  <div class="form-area">
+    <label for="name">Model: </label>
+    <input type="text" [(ngModel)]="car.name" name="name" placeholder="Clio">
+  </div>
+
+  <div class="form-area">
+    <label for="brand">Brand: </label>
+    <select [(ngModel)]="car.brand" name="brand">
+      <option *ngFor="let b of myBrands" [ngValue]="b.value">{{b.name}}</option>
+      <option value="Renault">Renault</option>
+    </select>
+  </div>
+
+  <div class="form-area">
+    <label for="price">Price: </label>
+    <input type="text" [(ngModel)]="car.price" name="price">
+  </div>
+
+  <div class="form-area">
+    <label for="fuelType">Fuel Type: </label>
+    <select [(ngModel)]="car.fuelType" name="fuelType">
+      <option *ngFor="let fuel of fuelTypes" [ngValue]="fuel.value">{{fuel.name}}</option>
+      <option value="LPG">LPG</option>
+    </select>
+  </div>
+
+  <div class="form-area">
+    <label for="horsePower">Horse Power: </label>
+    <input type="text" [(ngModel)]="car.horsePower" name="horsePower" placeholder="100hp">
+  </div>
+
+  <div class="form-area">
+    <label for="startOfSales">Start Of Sales: </label>
+    <input type="date" [(ngModel)]="car.startOfSales" name="startOfSales" placeholder="20/06/2020">
+  </div>
+  
+  <div class="form-area">
+    <label for="endOfSales">End Of Sales: </label>
+    <input type="date" [(ngModel)]="car.endOfSales" name="endOfSales" placeholder="20/06/2020">
+  </div>
+  
+  <div class="form-area">
+    <button class="btn" type="submit">Enregistrer</button>
+  </div>
+
+</form> -->
+
+
