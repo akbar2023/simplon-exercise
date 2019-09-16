@@ -54,11 +54,14 @@ export class EditCarComponent implements OnInit {
       form.value.id = this.id;
       this.carService.updateCar(form.value).subscribe((car) => console.log(car));
     }else{
-      // alert('New Car!');
-      this.carService.addCar(form.value).subscribe();
+      if(!form.value.name){
+        alert("No car registered!")
+      }else{
+        this.carService.addCar(form.value).subscribe();
+        this.router.navigate(['overview']);
+      }
     }
     
-    this.router.navigate(['overview']);
 }
 
 }

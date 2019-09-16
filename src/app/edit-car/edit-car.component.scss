@@ -8,6 +8,23 @@
   width: 100%;
 }
 
+body{
+  margin: 0 auto;
+}
+
+thead{
+  background: #f5a623 !important;
+}
+
 td {
   padding-right: 8px;
 }
+
+mat-form-field{
+  width: 250px !important;
+}
+
+// mat-form-field{
+//   width: 250px !important;
+//   background: green !important;
+// }

@@ -1,13 +1,11 @@
-<p>{{ car | json }}</p>
+<!-- <p>{{ car | json }}</p> -->
 
 
-
+<h1 *ngIf="car.id">Edit Car</h1>
+<h1 *ngIf="!car.id">Add Car</h1>
 
 
 <form class="example-form" (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="car">
-  <!-- <mat-form-field class="example-full-width">
-    <input matInput placeholder="Company (disabled)" disabled value="Google">
-  </mat-form-field> -->
 
   <table class="example-full-width" cellspacing="0">
     <tr>
@@ -55,14 +53,19 @@
         <td>
           <tr>
             <td>
-              <mat-form-field>
+              <mat-form-field class="datePicker">
                 <input [(ngModel)]="car.startOfSales" name="startOfSales" matInput [matDatepicker]="startDatePicker" placeholder="Start of sales">
                 <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
                 <mat-datepicker #startDatePicker></mat-datepicker>
-              </mat-form-field> 
+              </mat-form-field>
+              <!-- <mat-form-field class="datePicker">
+                <input [(ngModel)]="car.endOfSales" name="endOfSales" matInput [matDatepicker]="endDatePicker" placeholder="End of sales">
+                <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #endDatePicker></mat-datepicker>
+              </mat-form-field> -->
             </td>             
             <td>
-              <mat-form-field>
+              <mat-form-field class="datePicker">
                 <input [(ngModel)]="car.endOfSales" name="endOfSales" matInput [matDatepicker]="endDatePicker" placeholder="End of sales">
                 <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
                 <mat-datepicker #endDatePicker></mat-datepicker>
@@ -74,7 +77,7 @@
 
       <tr>
         <td>
-          <button mat-flat-button color="accent">Submit</button>
+          <button mat-flat-button>Submit</button>
         </td>
       </tr>
   </table>

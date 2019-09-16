@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-.material-icons.renaultYellow { color: #fbb800; }
+.material-icons.renaultYellow { color: #f5a623; }
+
+
+button{
+  background: #f5a623 !important;
+}
