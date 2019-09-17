@@ -36,7 +36,7 @@ export class EditCarComponent implements OnInit {
   
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = params['id'];
+      this.id = parseInt(params['id']);
       if(this.id){
         this.carService.getCar(this.id).subscribe(car => this.car = Object.assign({}, car));
       }else{
@@ -50,17 +50,19 @@ export class EditCarComponent implements OnInit {
   
   
   onSubmit(form: NgForm) {
+    debugger
     if(this.id){
       form.value.id = this.id;
       this.carService.updateCar(form.value).subscribe((car) => console.log(car));
-    }else{
-      if(!form.value.name){
-        alert("No car registered!")
+      this.router.navigate(['overview']);
+    }else if(Object.values(form.value).some(value => value === null)){
+      
+        alert("Informations are missing!")
       }else{
         this.carService.addCar(form.value).subscribe();
         this.router.navigate(['overview']);
       }
-    }
+    
     
 }
 

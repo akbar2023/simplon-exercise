@@ -1,7 +1,7 @@
 <!-- <p>{{ car | json }}</p> -->
 
 
-<h1 *ngIf="car.id">Edit Car</h1>
+<h1 *ngIf="car?.id">Edit Car</h1>
 <h1 *ngIf="!car.id">Add Car</h1>
 
 
@@ -17,6 +17,7 @@
       <td>
         <mat-form-field class="example-full-width">
           <input matInput [(ngModel)]="car.horsePower" name="horsePower" placeholder="Horse Power">
+          <span matSuffix>hp</span>
         </mat-form-field>
       </td>
     </tr>
@@ -48,6 +49,7 @@
         <td>
             <mat-form-field class="example-full-width">
               <input [(ngModel)]="car.price" name="price" matInput placeholder="Price">
+              <span matPrefix>€</span>
             </mat-form-field>
         </td>
         <td>
@@ -58,11 +60,6 @@
                 <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
                 <mat-datepicker #startDatePicker></mat-datepicker>
               </mat-form-field>
-              <!-- <mat-form-field class="datePicker">
-                <input [(ngModel)]="car.endOfSales" name="endOfSales" matInput [matDatepicker]="endDatePicker" placeholder="End of sales">
-                <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-                <mat-datepicker #endDatePicker></mat-datepicker>
-              </mat-form-field> -->
             </td>             
             <td>
               <mat-form-field class="datePicker">
@@ -77,7 +74,7 @@
 
       <tr>
         <td>
-          <button mat-flat-button>Submit</button>
+          <button mat-flat-button type="submit">Submit</button>
         </td>
       </tr>
   </table>
