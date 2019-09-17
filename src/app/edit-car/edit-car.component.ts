@@ -50,7 +50,6 @@ export class EditCarComponent implements OnInit {
   
   
   onSubmit(form: NgForm) {
-    debugger
     if(this.id){
       form.value.id = this.id;
       this.carService.updateCar(form.value).subscribe((car) => console.log(car));
