@@ -2,7 +2,7 @@
 
 
 <h1 *ngIf="car?.id">Edit Car</h1>
-<h1 *ngIf="!car.id">Add Car</h1>
+<h1 *ngIf="!car?.id">Add Car</h1>
 
 
 <form class="example-form" (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="car">
