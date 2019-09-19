@@ -27,8 +27,8 @@
           <mat-form-field>
             <mat-label>Brand</mat-label>
             <mat-select [(ngModel)]="car.brand" name="brand">
-              <mat-option *ngFor="let brand of myBrands" [value]="brand.value">
-                {{brand.name}}
+              <mat-option *ngFor="let brand of brands | keyvalue" [value]="brand.value">
+                {{brand.key}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -37,8 +37,9 @@
           <mat-form-field>
             <mat-label>Fuel Type</mat-label>
             <mat-select [(ngModel)]="car.fuelType" name="fuelType">
-              <mat-option *ngFor="let fuel of fuelTypes" [value]="fuel.value">
-                {{fuel.name}}
+              <!-- keyvalue is needed to take every values of fuelTypes because it is an enum (object) -->
+              <mat-option *ngFor="let fuel of fuelTypes | keyvalue" [value]="fuel.value">
+                {{fuel.key}}
               </mat-option>
             </mat-select>
           </mat-form-field>
