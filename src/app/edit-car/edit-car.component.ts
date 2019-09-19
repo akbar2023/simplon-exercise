@@ -53,7 +53,7 @@ export class EditCarComponent implements OnInit {
           return true;
         }
       });
-      return changeString(field);
+      return field && changeString(field);
     };
     let missingInfo: string;
     if (this.id) {
