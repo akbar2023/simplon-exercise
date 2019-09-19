@@ -45,23 +45,23 @@ export class EditCarComponent implements OnInit {
 
 
   onSubmit(form: NgForm) {
-    let missingInfoName: string;
-    const hasMissingInfo = Object.entries<string>(form.value).some(([key, value]) => {
-      if (value === null) {
-        missingInfoName = key;
-        return true;
-      }
-    });
-
+    const checkMissingInfo = () => {
+      let field: string = null;
+      Object.entries<string>(form.value).some(([key, value]) => {
+        if (value === null) {
+          field = key;
+          return true;
+        }
+      });
+      return changeString(field);
+    };
+    let missingInfo: string;
     if (this.id) {
       form.value.id = this.id;
       this.carService.updateCar(form.value).subscribe((car) => console.log(car));
       this.router.navigate(['overview']);
-    } else if (hasMissingInfo) {
-
-      missingInfoName = changeString(missingInfoName);
-
-      alert(missingInfoName + " is missing");
+    } else if ((missingInfo = checkMissingInfo())) {
+      alert(missingInfo + " is missing");
     } else {
       this.carService.addCar(form.value).subscribe();
       this.router.navigate(['overview']);
@@ -78,11 +78,11 @@ function changeString(value) {
   let newString = "";
   //endOfSale
   for (const c of value) {
-      const lower = c.toLowerCase();
-      if (c !== lower) {
-          newString += " ";
-      }
-      newString += lower;
+    const lower = c.toLowerCase();
+    if (c !== lower) {
+      newString += " ";
+    }
+    newString += lower;
   }
   newString = newString[0].toUpperCase() + newString.substr(1);
   return newString;
