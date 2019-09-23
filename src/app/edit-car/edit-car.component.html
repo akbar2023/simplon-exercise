@@ -1,138 +1,51 @@
-<!-- <p>{{ car | json }}</p> -->
+<form [formGroup]="carForm" (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="car">
+  <h1 *ngIf="car?.id">Edit Car</h1>
+  <h1 *ngIf="!car.id">Add Car</h1>
+  <p>{{car | json }}</p>
+
+  <!-- Inputs -->
+
+  <div class="left">
+    <label>
+      Name :
+      <input type="text"  formControlName="name">
+    </label>
+
+    <label>
+      Brand :
+      <input type="text" formControlName="brand">
+    </label>
+
+    <label>
+      Price :
+      <input type="text" formControlName="price">
+    </label>
+  </div>
 
 
-<h1 *ngIf="car?.id">Edit Car</h1>
-<h1 *ngIf="!car?.id">Add Car</h1>
+  <div class="right">
+    <label>
+      Horse Power :
+      <input type="text" formControlName="horsePower">
+    </label>
 
+    <label>
+      fuel Type:
+      <input type="text" formControlName="fuelType">
+    </label>
 
-<form class="example-form" (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="car">
-
-  <table class="example-full-width" cellspacing="0">
-    <tr>
-      <td>
-        <mat-form-field class="example-full-width">
-          <input [(ngModel)]="car.name" name="name" matInput placeholder="Name">
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field class="example-full-width">
-          <input matInput [(ngModel)]="car.horsePower" name="horsePower" placeholder="Horse Power">
-          <span matSuffix>hp</span>
-        </mat-form-field>
-      </td>
-    </tr>
-
-    <tr>
-        <td>
-          <mat-form-field>
-            <mat-label>Brand</mat-label>
-            <mat-select [(ngModel)]="car.brand" name="brand">
-              <mat-option *ngFor="let brand of brands | keyvalue" [value]="brand.value">
-                {{brand.key}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field>
-            <mat-label>Fuel Type</mat-label>
-            <mat-select [(ngModel)]="car.fuelType" name="fuelType">
-              <!-- keyvalue is needed to take every values of fuelTypes because it is an enum (object) -->
-              <mat-option *ngFor="let fuel of fuelTypes | keyvalue" [value]="fuel.value">
-                {{fuel.key}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-            <mat-form-field class="example-full-width">
-              <input [(ngModel)]="car.price" name="price" matInput placeholder="Price">
-              <span matPrefix>€</span>
-            </mat-form-field>
-        </td>
-        <td>
-          <tr>
-            <td>
-              <mat-form-field class="datePicker">
-                <input [(ngModel)]="car.startOfSales" name="startOfSales" matInput [matDatepicker]="startDatePicker" placeholder="Start of sales">
-                <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
-                <mat-datepicker #startDatePicker></mat-datepicker>
-              </mat-form-field>
-            </td>             
-            <td>
-              <mat-form-field class="datePicker">
-                <input [(ngModel)]="car.endOfSales" name="endOfSales" matInput [matDatepicker]="endDatePicker" placeholder="End of sales">
-                <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-                <mat-datepicker #endDatePicker></mat-datepicker>
-              </mat-form-field> 
-            </td>
-          </tr>             
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <button mat-flat-button type="submit">Submit</button>
-        </td>
-      </tr>
-  </table>
-
+    <div class="date">
+      <label>
+        Start of sales:
+        <input type="text" formControlName="startOfSales" required>
+      </label>
   
+      <label>
+        End of sales:
+        <input type="text" formControlName="endOfSales">
+      </label>
+    </div>
+  </div>
+
+  <button type="submit">Submit</button>
 </form>
-
-
-
-
-<!-- <form (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="car">
-
-  <div class="form-area">
-    <label for="name">Model: </label>
-    <input type="text" [(ngModel)]="car.name" name="name" placeholder="Clio">
-  </div>
-
-  <div class="form-area">
-    <label for="brand">Brand: </label>
-    <select [(ngModel)]="car.brand" name="brand">
-      <option *ngFor="let b of myBrands" [ngValue]="b.value">{{b.name}}</option>
-      <option value="Renault">Renault</option>
-    </select>
-  </div>
-
-  <div class="form-area">
-    <label for="price">Price: </label>
-    <input type="text" [(ngModel)]="car.price" name="price">
-  </div>
-
-  <div class="form-area">
-    <label for="fuelType">Fuel Type: </label>
-    <select [(ngModel)]="car.fuelType" name="fuelType">
-      <option *ngFor="let fuel of fuelTypes" [ngValue]="fuel.value">{{fuel.name}}</option>
-      <option value="LPG">LPG</option>
-    </select>
-  </div>
-
-  <div class="form-area">
-    <label for="horsePower">Horse Power: </label>
-    <input type="text" [(ngModel)]="car.horsePower" name="horsePower" placeholder="100hp">
-  </div>
-
-  <div class="form-area">
-    <label for="startOfSales">Start Of Sales: </label>
-    <input type="date" [(ngModel)]="car.startOfSales" name="startOfSales" placeholder="20/06/2020">
-  </div>
-  
-  <div class="form-area">
-    <label for="endOfSales">End Of Sales: </label>
-    <input type="date" [(ngModel)]="car.endOfSales" name="endOfSales" placeholder="20/06/2020">
-  </div>
-  
-  <div class="form-area">
-    <button class="btn" type="submit">Enregistrer</button>
-  </div>
-
-</form> -->
-
-

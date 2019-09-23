@@ -12,7 +12,7 @@ import { MatCheckboxModule} from '@angular/material/checkbox';
 import { OverviewComponent } from './overview/overview.component';
 import { CarDetailsComponent } from './car-details/car-details.component';
 import { EditCarComponent } from './edit-car/edit-car.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon'; 
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select'; 
@@ -41,6 +41,7 @@ import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'fr'},

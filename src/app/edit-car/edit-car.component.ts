@@ -3,7 +3,7 @@ import { CarService } from '@core/services/car.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Car } from '@core/models/car';
 import { Brand } from '@core/models/brand';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormControl, FormGroup } from '@angular/forms';
 import { FuelType } from '@core/models/fuel-type';
 
 
@@ -18,6 +18,16 @@ export class EditCarComponent implements OnInit {
   brands = Brand;
   fuelTypes = FuelType;
   id: number;
+
+  carForm = new FormGroup({
+    name: new FormControl(''),
+    brand: new FormControl(''),
+    horsePower: new FormControl(''),
+    fuelType: new FormControl(''),
+    startOfSales: new FormControl(''),
+    endOfSales: new FormControl(''),
+  });
+  
 
   // fuelTypes: SelectItem<FuelType>[] = [
   //   {name: "Gasoline", value: FuelType.Gasoline},
@@ -45,46 +55,17 @@ export class EditCarComponent implements OnInit {
 
 
   onSubmit(form: NgForm) {
-    const checkMissingInfo = () => {
-      let field: string = null;
-      Object.entries<string>(form.value).some(([key, value]) => {
-        if (value === null) {
-          field = key;
-          return true;
-        }
-      });
-      return changeString(field);
-    };
-    let missingInfo: string;
+
+
+
     if (this.id) {
       form.value.id = this.id;
       this.carService.updateCar(form.value).subscribe((car) => console.log(car));
       this.router.navigate(['overview']);
-    } else if ((missingInfo = checkMissingInfo())) {
-      alert(missingInfo + " is missing");
     } else {
       this.carService.addCar(form.value).subscribe();
       this.router.navigate(['overview']);
     }
-
-
   }
 
 }
-
-// Function de string en majuscule
-
-function changeString(value) {
-  let newString = "";
-  //endOfSale
-  for (const c of value) {
-    const lower = c.toLowerCase();
-    if (c !== lower) {
-      newString += " ";
-    }
-    newString += lower;
-  }
-  newString = newString[0].toUpperCase() + newString.substr(1);
-  return newString;
-}
-
