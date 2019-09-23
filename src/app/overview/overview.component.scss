@@ -14,3 +14,9 @@
 table{
     table-layout: fixed;
 }
+
+.mat-row{
+    &:nth-child(even){
+        background-color: #eee;
+    }
+}

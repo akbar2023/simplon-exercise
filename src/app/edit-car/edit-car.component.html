@@ -1,51 +1,54 @@
 <form [formGroup]="carForm" (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="car">
   <h1 *ngIf="car?.id">Edit Car</h1>
   <h1 *ngIf="!car.id">Add Car</h1>
-  <p>{{car | json }}</p>
+  <!-- <p>{{car | json }}</p> -->
 
-  <!-- Inputs -->
+    <div class="container">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
 
-  <div class="left">
-    <label>
-      Name :
-      <input type="text"  formControlName="name">
-    </label>
+      <mat-form-field>
+        <mat-label>Horse Power</mat-label>
+        <input matInput formControlName="horsePower">
+        <span matSuffix>hp</span>
+      </mat-form-field>
 
-    <label>
-      Brand :
-      <input type="text" formControlName="brand">
-    </label>
+      <mat-form-field>
+        <mat-label>Brand</mat-label>
+        <mat-select formControlName="brand">
+          <mat-option *ngFor="let brand of brands | keyvalue" [value]="brand.key">{{brand.value}}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <label>
-      Price :
-      <input type="text" formControlName="price">
-    </label>
-  </div>
+      <mat-form-field>
+        <mat-label>Fuel Type</mat-label>
+        <mat-select formControlName="fuelType">
+          <mat-option *ngFor="let ft of fuelTypes | keyvalue" [value]="ft.key">{{ft.value}}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
+      <mat-form-field>
+        <mat-label>Price</mat-label>
+        <span matPrefix>€ &nbsp;</span>
+        <input matInput formControlName="price" prefix>
+      </mat-form-field>
+    
+      <div class="calendar">
+        <mat-form-field>
+            <input formControlName="startOfSales" matInput [matDatepicker]="picker1" placeholder="Start of sales">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
 
-  <div class="right">
-    <label>
-      Horse Power :
-      <input type="text" formControlName="horsePower">
-    </label>
-
-    <label>
-      fuel Type:
-      <input type="text" formControlName="fuelType">
-    </label>
-
-    <div class="date">
-      <label>
-        Start of sales:
-        <input type="text" formControlName="startOfSales" required>
-      </label>
-  
-      <label>
-        End of sales:
-        <input type="text" formControlName="endOfSales">
-      </label>
+        <mat-form-field>
+            <input formControlName="endOfSales" matInput [matDatepicker]="picker2" placeholder="End of sales">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
     </div>
-  </div>
 
-  <button type="submit">Submit</button>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
 </form>
