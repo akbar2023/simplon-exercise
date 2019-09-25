@@ -5,13 +5,37 @@ import { Car } from '@core/models/car';
 import { Brand } from '@core/models/brand';
 import { NgForm, FormControl, FormGroup } from '@angular/forms';
 import { FuelType } from '@core/models/fuel-type';
+import { MomentDateAdapter} from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import * as moment from 'moment';
 
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'YYYY-MM-DD',
+    monthYearLabel: 'YYYY-MM-DD',
+    dateA11yLabel: 'YYYY-MM-DD',
+    monthYearA11yLabel: 'YYYY-MM-DD',
+  },
+};
 
 
 @Component({
   selector: 'app-edit-car',
   templateUrl: './edit-car.component.html',
   styleUrls: ['./edit-car.component.scss'],
+  providers: [
+    // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
+    // application's root module. We provide it at the component level here, due to limitations of
+    // our example generation script.
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
+  
 })
 export class EditCarComponent implements OnInit {
 
@@ -67,13 +91,17 @@ export class EditCarComponent implements OnInit {
     });
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit() {
     if (this.id) {
-      form.value.id = this.id;
-      this.carService.updateCar(form.value).subscribe((car) => console.log(car));
+      this.carForm.value.id = this.id;
+      this.carForm.value.endOfSales =  moment(this.carForm.value.endOfSales).format('YYYY-MM-DD');
+      this.carForm.value.startOfSales =  moment(this.carForm.value.startOfSales).format('YYYY-MM-DD');
+      this.carService.updateCar(this.carForm.value).subscribe((car) => console.log(car));
       this.router.navigate(['overview']);
     } else {
-      this.carService.addCar(form.value).subscribe();
+      this.carForm.value.endOfSales =  moment(this.carForm.value.endOfSales).format('YYYY-MM-DD');
+      this.carForm.value.startOfSales =  moment(this.carForm.value.startOfSales).format('YYYY-MM-DD');
+      this.carService.addCar(this.carForm.value).subscribe();
       this.router.navigate(['overview']);
     }
   }

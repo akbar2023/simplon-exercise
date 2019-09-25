@@ -1,14 +1,5 @@
-<nav>
-  <ul>
-    <li style="list-style: none; color:#000"><a [routerLink]="['/overview']">Dashbord</a></li>
-    <li style="list-style: none; color:#000">
-      <a [routerLink]="['/add-car']">
-        <!-- <button mat-flat-button color="accent"><i class="material-icons">add</i> Add car</button> -->
-        <button mat-raised-button color="primary" type="submit"><i class="material-icons">add</i> Add car</button>
-      </a>
-    </li>
-  </ul>
-</nav> 
+
+<button [routerLink]="['/add-car']" mat-raised-button color="primary" type="submit"><i class="material-icons">add</i> Add car</button>
 
 <table style="width: 100%;" mat-table [dataSource]="cars" class="mat-elevation-z8">
 
@@ -49,7 +40,10 @@
   
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>ACTION</th>
-    <td style="cursor: pointer" mat-cell *matCellDef="let car"><i class="material-icons"><a [routerLink]="['/edit', car.id]">edit</a></i><i class="material-icons"><a (click)="deleteCar(car.id)">delete</a></i></td>
+    <td style="cursor: pointer" mat-cell *matCellDef="let car">
+      <i [routerLink]="['/edit', car.id]" class="material-icons">create</i>
+      <i (click)="deleteCar(car.id)" class="material-icons">delete_outline</i>
+    </td>
   </ng-container>
   
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -1,4 +1,4 @@
-<form [formGroup]="carForm" (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="car">
+<form [formGroup]="carForm" (ngSubmit)="onSubmit()" *ngIf="car">
   <h1 *ngIf="car?.id">Edit Car</h1>
   <h1 *ngIf="!car.id">Add Car</h1>
   <!-- <p>{{car | json }}</p> -->
@@ -37,16 +37,17 @@
     
       <div class="calendar">
         <mat-form-field>
-            <input formControlName="startOfSales" matInput [matDatepicker]="picker1" placeholder="Start of sales">
-            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
+            <input formControlName="startOfSales" matInput [matDatepicker]="dp1" placeholder="Start of sales">
+            <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+            <mat-datepicker #dp1></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field>
-            <input formControlName="endOfSales" matInput [matDatepicker]="picker2" placeholder="End of sales">
-            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-            <mat-datepicker #picker2></mat-datepicker>
+            <input formControlName="endOfSales" matInput [matDatepicker]="dp2" placeholder="End of sales">
+            <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+            <mat-datepicker #dp2></mat-datepicker>
         </mat-form-field>
+        
       </div>
     </div>
 
