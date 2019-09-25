@@ -4,7 +4,12 @@ import { Car } from '@core/models/car';
 export enum ActionTypes {
   LoadCars = '[Cars] Get cars from API',
   LoadCarsSuccess = '[Cars] Get cars from API Success',
-  LoadCarsFailed = '[Cars] Get cars from API Failed'
+  LoadCarsFailed = '[Cars] Get cars from API Failed',
+  LoadCar = '[Car] Get car from API',
+  LoadCarSuccess = '[Car] Get car from API Success',
+  LoadCarFailed = '[Car] Get car from API Failed',
+
+
 }
 
 export class LoadCars implements Action {
@@ -26,4 +31,7 @@ export class LoadCarsFailed implements Action {
 export type Actions =
   | LoadCars
   | LoadCarsSuccess
-  | LoadCarsFailed;
+  | LoadCarsFailed
+  | LoadCar
+  | LoadCarSuccess
+  | LoadCarFailed;

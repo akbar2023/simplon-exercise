@@ -13,7 +13,5 @@ export class AppComponent implements OnInit {
 
   constructor(private readonly store: Store<State>) {}
 
-  ngOnInit(): void {
-    this.store.dispatch(new LoadCars());  
-  }
+  ngOnInit(): void { }
 }

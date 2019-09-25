@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Car } from '@core/models/car';
 import { CarService } from '@core/services/car.service';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { State } from '@core/store';
+import { LoadCars } from '@core/store/actions/car.actions';
 
 @Component({
   selector: 'app-overview',
@@ -10,6 +14,7 @@ import { CarService } from '@core/services/car.service';
 export class OverviewComponent implements OnInit {
 
   cars: Car[] = [];
+  cars$: Observable<State['cars']>;
 
   displayedColumns: string[] = 
   [
@@ -25,11 +30,12 @@ export class OverviewComponent implements OnInit {
 
   dataSource = this.cars;
 
-  constructor(private carService: CarService) {}
+  constructor(private carService: CarService, private store: Store<State>) {
+    this.cars$ = store.select('cars');
+  }
   
   ngOnInit() {
-    this.carService.getCars().subscribe(cars => {this.cars = cars
-      console.log(this.cars)});
+    this.store.dispatch(new LoadCars());
   }
 
   deleteCar(id: number) {

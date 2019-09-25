@@ -17,6 +17,16 @@ export class CarEffects {
       catchError((error) => of(new fromCarActions.LoadCarsFailed(error)))
     );
 
+
+  // @Effect()
+  //   DeleteCar$ = this.actions$
+  //   .pipe(
+  //     ofType(fromCarActions.ActionTypes.DeleteCar),
+  //     switchMap(() => this.carService.getCars()),
+  //     map((cars) => new fromCarActions.LoadCarsSuccess(cars)),
+  //     catchError((error) => of(new fromCarActions.LoadCarsFailed(error)))
+  //   );
+
   constructor(
     private carService: CarService,
     private readonly actions$: Actions) { }

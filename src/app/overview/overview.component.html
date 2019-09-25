@@ -1,7 +1,7 @@
 
 <button [routerLink]="['/add-car']" mat-raised-button color="primary" type="submit"><i class="material-icons">add</i> Add car</button>
 
-<table style="width: 100%;" mat-table [dataSource]="cars" class="mat-elevation-z8">
+<table style="width: 100%;" mat-table [dataSource]="(cars$ | async).list" class="mat-elevation-z8">
 
   <ng-container matColumnDef="brand">
     <th mat-header-cell *matHeaderCellDef>BRAND</th>
