@@ -20,7 +20,8 @@ import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MomentDateModule } from "@angular/material-moment-adapter";
-// import { DeleteConfirmComponent } from './edit-car/delete-confirm/delete-confirm.component';
+import { DeleteConfirmComponent } from './edit-car/delete-confirm/delete-confirm.component';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { MomentDateModule } from "@angular/material-moment-adapter";
     OverviewComponent,
     CarDetailsComponent,
     EditCarComponent,
-    // DeleteConfirmComponent,
+    DeleteConfirmComponent,
 
   ],
   imports: [
@@ -48,6 +49,10 @@ import { MomentDateModule } from "@angular/material-moment-adapter";
     MatFormFieldModule,
     MatDatepickerModule,
     MomentDateModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    DeleteConfirmComponent
   ],
   providers: [
     {

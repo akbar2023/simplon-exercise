@@ -1,6 +1,6 @@
-<form [formGroup]="carForm" (ngSubmit)="onSubmit()" *ngIf="car">
-  <h1 *ngIf="car?.id">Edit Car</h1>
-  <h1 *ngIf="!car.id">Add Car</h1>
+<form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+  <h1 *ngIf="this.id">Edit Car</h1>
+  <h1 *ngIf="!this.id">Add Car</h1>
   <!-- <p>{{car | json }}</p> -->
 
     <div class="container">
@@ -51,5 +51,5 @@
       </div>
     </div>
 
-    <button mat-raised-button color="primary" type="submit">Submit</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!carForm.valid">Submit</button>
 </form>

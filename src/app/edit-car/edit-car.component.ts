@@ -3,11 +3,15 @@ import { CarService } from '@core/services/car.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Car } from '@core/models/car';
 import { Brand } from '@core/models/brand';
-import { NgForm, FormControl, FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FuelType } from '@core/models/fuel-type';
-import { MomentDateAdapter} from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import * as moment from 'moment';
+
+import { Store, select } from '@ngrx/store';
+import { State } from '@core/store';
+import { UpdateCar, AddCar, GetCar } from '@core/store/actions/car.actions';
 
 
 export const MY_FORMATS = {
@@ -31,62 +35,56 @@ export const MY_FORMATS = {
     // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
     // application's root module. We provide it at the component level here, due to limitations of
     // our example generation script.
-    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
 
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ],
-  
+
 })
 export class EditCarComponent implements OnInit {
-
-  car: Car;
   brands = Brand;
   fuelTypes = FuelType;
   id: number;
   carForm: FormGroup;
 
+  createForm(car?: Car) {
+    this.carForm = this.fb.group({
+      name: [car ? car.name : '', Validators.required],
+      brand: [car ? car.brand : '', Validators.required],
+      horsePower: [car ? car.horsePower : '',],
+      price: [car ? car.price : '', Validators.min(0)],
+      fuelType: [car ? car.fuelType : '',],
+      startOfSales: [car ? car.startOfSales : '',],
+      endOfSales: [car ? car.endOfSales : '',]
+    });
+  }
 
-  // fuelTypes: SelectItem<FuelType>[] = [
-  //   {name: "Gasoline", value: FuelType.Gasoline},
-  //   {name: "Diesel", value: FuelType.Diesel },
-  //   {name: "LPG", value: FuelType.LPG },
-  //   {name: "Electric", value: FuelType.Electric},
-  // ];
-
-  constructor(private carService: CarService, private route: ActivatedRoute, private router: Router, private cd: ChangeDetectorRef) {
+  constructor(
+    private carService: CarService,
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private cd: ChangeDetectorRef,
+    private store: Store<State>
+  ) {
   }
 
   ngOnInit() {
+    this.store.select(state => state.cars.selectedCar).subscribe(car => {
+      this.createForm(car);
+      this.cd.markForCheck();
+    })
     this.route.params.subscribe(params => {
       this.id = parseInt(params['id']);
       if (this.id) {
-        this.carService.getCar(this.id).subscribe(car => {
-          this.car = Object.assign({}, car);
-          this.carForm = new FormGroup({
-            name: new FormControl(this.car.name),
-            brand: new FormControl(this.car.brand),
-            horsePower: new FormControl(this.car.horsePower),
-            price: new FormControl(this.car.price),
-            fuelType: new FormControl(this.car.fuelType),
-            startOfSales: new FormControl(this.car.startOfSales),
-            endOfSales: new FormControl(this.car.endOfSales),
-          });
+        this.store.dispatch(new GetCar(this.id));
+        // this.carService.getCar(this.id).subscribe(car => {
+          // this.createForm(car);
+          // this.cd.markForCheck();
+        // });
 
-          this.cd.markForCheck();
-        });
       } else {
-        this.car = {
-          id: null, name: null, brand: null, fuelType: null, price: null, horsePower: null, startOfSales: null, endOfSales: null
-        };
-        this.carForm = new FormGroup({
-          name: new FormControl(''),
-          brand: new FormControl(''),
-          horsePower: new FormControl(''),
-          price: new FormControl(''),
-          fuelType: new FormControl(''),
-          startOfSales: new FormControl(''),
-          endOfSales: new FormControl(''),
-        });
+        this.createForm()
       }
     });
   }
@@ -94,14 +92,17 @@ export class EditCarComponent implements OnInit {
   onSubmit() {
     if (this.id) {
       this.carForm.value.id = this.id;
-      this.carForm.value.endOfSales =  moment(this.carForm.value.endOfSales).format('YYYY-MM-DD');
-      this.carForm.value.startOfSales =  moment(this.carForm.value.startOfSales).format('YYYY-MM-DD');
-      this.carService.updateCar(this.carForm.value).subscribe((car) => console.log(car));
+      this.carForm.value.endOfSales = moment(this.carForm.value.endOfSales).format('YYYY-MM-DD');
+      this.carForm.value.startOfSales = moment(this.carForm.value.startOfSales).format('YYYY-MM-DD');
+      console.log(this.carForm);
+      this.store.dispatch(new UpdateCar(this.carForm.value));
+      // this.carService.updateCar().subscribe((car) => console.log(car));
       this.router.navigate(['overview']);
     } else {
-      this.carForm.value.endOfSales =  moment(this.carForm.value.endOfSales).format('YYYY-MM-DD');
-      this.carForm.value.startOfSales =  moment(this.carForm.value.startOfSales).format('YYYY-MM-DD');
-      this.carService.addCar(this.carForm.value).subscribe();
+      this.carForm.value.endOfSales = moment(this.carForm.value.endOfSales).format('YYYY-MM-DD');
+      this.carForm.value.startOfSales = moment(this.carForm.value.startOfSales).format('YYYY-MM-DD');
+      this.store.dispatch(new AddCar(this.carForm.value));
+      // this.carService.addCar(this.carForm.value).subscribe();
       this.router.navigate(['overview']);
     }
   }

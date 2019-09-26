@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State } from '@core/store';
-import { LoadCars } from '@core/store/actions/car.actions';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +8,6 @@ import { LoadCars } from '@core/store/actions/car.actions';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
 
   constructor(private readonly store: Store<State>) {}
 
