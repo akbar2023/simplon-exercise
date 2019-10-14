@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { CarService } from '@core/services/car.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Car } from '@core/models/car';
@@ -8,6 +8,7 @@ import { FuelType } from '@core/models/fuel-type';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 
 import { Store, select } from '@ngrx/store';
 import { State } from '@core/store';
@@ -41,11 +42,13 @@ export const MY_FORMATS = {
   ],
 
 })
-export class EditCarComponent implements OnInit {
+export class EditCarComponent implements OnInit, OnDestroy {
   brands = Brand;
   fuelTypes = FuelType;
   id: number;
   carForm: FormGroup;
+
+  sub: Subscription;
 
   createForm(car?: Car) {
     this.carForm = this.fb.group({
@@ -70,7 +73,7 @@ export class EditCarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select(state => state.cars.selectedCar).subscribe(car => {
+    this.sub = this.store.select(state => state.cars.selectedCar).subscribe(car => {
       this.createForm(car);
       this.cd.markForCheck();
     })
@@ -79,14 +82,18 @@ export class EditCarComponent implements OnInit {
       if (this.id) {
         this.store.dispatch(new GetCar(this.id));
         // this.carService.getCar(this.id).subscribe(car => {
-          // this.createForm(car);
-          // this.cd.markForCheck();
+        // this.createForm(car);
+        // this.cd.markForCheck();
         // });
 
       } else {
         this.createForm()
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
   onSubmit() {

@@ -22,6 +22,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MomentDateModule } from "@angular/material-moment-adapter";
 import { DeleteConfirmComponent } from './edit-car/delete-confirm/delete-confirm.component';
 import { MatDialogModule } from '@angular/material';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,6 @@ import { MatDialogModule } from '@angular/material';
     CarDetailsComponent,
     EditCarComponent,
     DeleteConfirmComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -49,7 +49,8 @@ import { MatDialogModule } from '@angular/material';
     MatFormFieldModule,
     MatDatepickerModule,
     MomentDateModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSortModule
   ],
   entryComponents: [
     DeleteConfirmComponent

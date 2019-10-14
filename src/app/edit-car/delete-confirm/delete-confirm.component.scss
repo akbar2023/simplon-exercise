@@ -1,0 +1,27 @@
+*{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button:first-child{
+    color: #000;
+    background-color: #f12a58;
+    // background-color: #f55e82;
+}
+button:last-child{
+    color: #000;
+    background-color: #409ad6;
+    // background-color: #749ab3;
+}
+
+button:hover{
+    transition-duration: .4s;
+}
+
+button:first-child:hover{
+    background-color: #f12a58;
+}
+button:last-child:hover{
+    background-color: #409ad6;
+}

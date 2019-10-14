@@ -1,40 +1,40 @@
 
 <button [routerLink]="['/add-car']" mat-raised-button color="primary" type="submit"><i class="material-icons">add</i> Add car</button>
 
-<table style="width: 100%;" mat-table [dataSource]="(cars$ | async).list" class="mat-elevation-z8">
+<table mat-table matSort style="width: 100%;" [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="brand">
-    <th mat-header-cell *matHeaderCellDef>BRAND</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>BRAND</th>
     <td mat-cell *matCellDef="let car"> {{car.brand}} </td>
   </ng-container>
 
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>CAR</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>CAR</th>
     <td mat-cell *matCellDef="let car"> {{car.name}} </td>
   </ng-container>
 
   <ng-container matColumnDef="fuelType">
-    <th mat-header-cell *matHeaderCellDef>FUEL TYPE</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>FUEL TYPE</th>
     <td mat-cell *matCellDef="let car"> {{car.fuelType}} </td>
   </ng-container>
 
   <ng-container matColumnDef="price">
-    <th mat-header-cell *matHeaderCellDef>PRICE</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>PRICE</th>
     <td mat-cell *matCellDef="let car">€ {{car.price}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="horse power">
-    <th mat-header-cell *matHeaderCellDef>HORSE POWER</th>
+  <ng-container matColumnDef="horsePower">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>HORSE POWER</th>
     <td mat-cell *matCellDef="let car"> {{car.horsePower}} HP</td>
   </ng-container>
 
-  <ng-container matColumnDef="start of sales">
-    <th mat-header-cell *matHeaderCellDef>START OF SALES</th>
+  <ng-container matColumnDef="startOfSales">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>START OF SALES</th>
     <td mat-cell *matCellDef="let car"> {{car.startOfSales}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="end of sales">
-    <th mat-header-cell *matHeaderCellDef>END OF SALES</th>
+  <ng-container matColumnDef="endOfSales">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>END OF SALES</th>
     <td mat-cell *matCellDef="let car"> {{car.endOfSales}} </td>
   </ng-container>
   

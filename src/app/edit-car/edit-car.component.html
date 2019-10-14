@@ -11,7 +11,7 @@
 
       <mat-form-field>
         <mat-label>Horse Power</mat-label>
-        <input matInput formControlName="horsePower">
+        <input matInput formControlName="horsePower" type="number">
         <span matSuffix>hp</span>
       </mat-form-field>
 
@@ -32,14 +32,14 @@
       <mat-form-field>
         <mat-label>Price</mat-label>
         <span matPrefix>€ &nbsp;</span>
-        <input matInput formControlName="price" prefix>
+        <input type="number" matInput formControlName="price" prefix>
       </mat-form-field>
     
       <div class="calendar">
         <mat-form-field>
             <input formControlName="startOfSales" matInput [matDatepicker]="dp1" placeholder="Start of sales">
             <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
-            <mat-datepicker #dp1></mat-datepicker>
+            <mat-datepicker type="date" #dp1></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field>
