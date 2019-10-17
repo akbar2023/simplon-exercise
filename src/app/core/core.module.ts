@@ -15,7 +15,7 @@ import { CarEffects } from '@core/store/effects/car.effects';
   imports: [
     SharedModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryCarService),
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryCarService, {passThruUnknownUrl: true}),
     StoreModule.forRoot(fromCore.reducers, { runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true }}),
     EffectsModule.forRoot([CarEffects]),
     StoreDevtoolsModule.instrument({

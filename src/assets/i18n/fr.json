@@ -1,0 +1,26 @@
+{
+  "table": {
+     "head": {
+        "brand": "Marque",
+        "car": "Modèle",
+        "price": "Prix",
+        "fuelType": "Motorisation",
+        "horsePower": "Puissance",
+        "SOS": "Début de commercialisation",
+        "EOS": "Fin de commercialisation",
+        "action": "Action"
+      },
+     "body": {
+          "fuel": {
+            "Diesel": "Diesel",
+            "Essence": "Essence",
+            "LPG": "GPL",
+            "Electric": "Electrique",
+            "Gasoline": "Gasoil"
+          },
+          "unity": {
+            "hp": "Ch"
+          }
+     }
+  }
+}

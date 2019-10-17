@@ -1,0 +1,25 @@
+{
+  "table": {
+    "head": {
+      "brand": "Brand",
+      "car": "Car",
+      "price": "Price",
+      "fuelType": "Fuel Type",
+      "horsePower": "Horse Power",
+      "SOS": "Start Of Sales",
+      "EOS": "End Of Sales",
+      "action": "Action"
+    },
+    "body": {
+      "fuel": {
+        "Diesel": "Diesel",
+        "LPG": "LPG",
+        "Electric": "Electric",
+        "Gasoline": "Gasoline"
+      },
+      "unity": {
+        "hp": "hp"
+      }
+    }
+  }
+}

@@ -24,6 +24,17 @@ import { DeleteConfirmComponent } from './edit-car/delete-confirm/delete-confirm
 import { MatDialogModule } from '@angular/material';
 import { MatSortModule } from '@angular/material/sort';
 
+// Ngx Translate
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {HttpClient} from "@angular/common/http";
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +61,14 @@ import { MatSortModule } from '@angular/material/sort';
     MatDatepickerModule,
     MomentDateModule,
     MatDialogModule,
-    MatSortModule
+    MatSortModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
   ],
   entryComponents: [
     DeleteConfirmComponent

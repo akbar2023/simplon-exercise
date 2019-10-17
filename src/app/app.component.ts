@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State } from '@core/store';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,18 @@ import { State } from '@core/store';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private readonly store: Store<State>) {}
+  constructor(private readonly store: Store<State>, translate: TranslateService) {
+    // this language will be used as a fallback when a translation isn't found in the current language
+    translate.setDefaultLang('en');
+
+    // the lang to use, if the lang isn't available, it will use the current loader to get them
+    translate.use('fr');
+  }
+
+  translate: TranslateService;
+
+  // translate.use('fr');
+
 
   ngOnInit(): void { }
 }

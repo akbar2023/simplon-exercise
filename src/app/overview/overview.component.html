@@ -4,48 +4,48 @@
 <table mat-table matSort style="width: 100%;" [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="brand">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>BRAND</th>
+    <th mat-header-cell mat-sort-header *matHeaderCellDef>{{'table.head.brand' | translate}}</th>
     <td mat-cell *matCellDef="let car"> {{car.brand}} </td>
   </ng-container>
 
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>CAR</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'table.head.car' | translate}}</th>
     <td mat-cell *matCellDef="let car"> {{car.name}} </td>
   </ng-container>
 
   <ng-container matColumnDef="fuelType">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>FUEL TYPE</th>
-    <td mat-cell *matCellDef="let car"> {{car.fuelType}} </td>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'table.head.fuelType' | translate}}</th>
+    <td mat-cell *matCellDef="let car"> {{'table.body.fuel.' + car.fuelType | translate}} </td>
   </ng-container>
 
   <ng-container matColumnDef="price">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>PRICE</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'table.head.price' | translate}}</th>
     <td mat-cell *matCellDef="let car">€ {{car.price}} </td>
   </ng-container>
 
   <ng-container matColumnDef="horsePower">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>HORSE POWER</th>
-    <td mat-cell *matCellDef="let car"> {{car.horsePower}} HP</td>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'table.head.horsePower' | translate}}</th>
+    <td mat-cell *matCellDef="let car"> {{car.horsePower}} {{'table.body.unity.hp'| translate}}</td>
   </ng-container>
 
   <ng-container matColumnDef="startOfSales">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>START OF SALES</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'table.head.SOS' | translate}}</th>
     <td mat-cell *matCellDef="let car"> {{car.startOfSales}} </td>
   </ng-container>
 
   <ng-container matColumnDef="endOfSales">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>END OF SALES</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'table.head.EOS' | translate}}</th>
     <td mat-cell *matCellDef="let car"> {{car.endOfSales}} </td>
   </ng-container>
-  
+
   <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>ACTION</th>
+    <th mat-header-cell *matHeaderCellDef>{{'table.head.action' | translate}}</th>
     <td style="cursor: pointer" mat-cell *matCellDef="let car">
       <i [routerLink]="['/edit', car.id]" class="material-icons">create</i>
       <i (click)="deleteCar(car.id)" class="material-icons">delete_outline</i>
     </td>
   </ng-container>
-  
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
