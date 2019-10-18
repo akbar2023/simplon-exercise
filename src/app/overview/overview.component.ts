@@ -10,6 +10,7 @@ import { DeleteConfirmComponent } from 'app/edit-car/delete-confirm/delete-confi
 import { find, map, filter } from 'rxjs/operators';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import {Brand} from "@core/models/brand";
 
 
 @Component({
@@ -20,6 +21,9 @@ import { MatTableDataSource } from '@angular/material/table';
 export class OverviewComponent implements OnInit, OnDestroy {
 
   cars$: Observable<State['cars']>;
+  filter: string;
+  filterBrand: string;
+  cars: Car[];
 
   displayedColumns: string[] =
     [
@@ -32,6 +36,13 @@ export class OverviewComponent implements OnInit, OnDestroy {
       'endOfSales',
       'actions'
     ];
+
+
+  brands: Brand[] = [
+    Brand.Dacia,
+    Brand.Renault,
+    Brand.Alpine
+  ];
 
   dataSource = new MatTableDataSource([]);
   sub: Subscription;
@@ -52,6 +63,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.dataSource.sort = this.sort;
 
     this.sub = this.cars$.subscribe((cars) => {
+      this.cars = cars.list;
       this.dataSource.data = cars.list;
     });
   }
@@ -59,7 +71,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
-  
+
   // Delete with confirm
   deleteCar(id: number):void  {
     let selectedCar$ = this.cars$.pipe(
@@ -80,4 +92,15 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
   }
 
+  updateFilter(val: string) {
+    this.filter = val;
+    // this.filter[0].toUpperCase();
+    console.log(this.filter);
+    this.dataSource.data = this.cars.filter((car=> car.name.toLowerCase().includes(this.filter.toLowerCase())));
+  }
+
+  brandFilter(brand: string) {
+    this.filterBrand = brand;
+    this.dataSource.data = this.cars.filter((car=> car.brand.includes(this.filterBrand)));
+  }
 }

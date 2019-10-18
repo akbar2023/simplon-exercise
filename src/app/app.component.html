@@ -1,1 +1,11 @@
+<mat-form-field  style="float: right">
+<!--  <mat-label>Favorite food</mat-label>-->
+  <mat-select [ngModel]="language" (ngModelChange)="changeLanguage($event)">
+    <mat-option value="en">English</mat-option>
+    <mat-option value="fr">Français</mat-option>
+  </mat-select>
+</mat-form-field>
 <router-outlet></router-outlet>
+
+
+

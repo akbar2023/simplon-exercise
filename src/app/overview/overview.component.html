@@ -1,6 +1,19 @@
 
 <button [routerLink]="['/add-car']" mat-raised-button color="primary" type="submit"><i class="material-icons">add</i> Add car</button>
 
+
+<ng-form class="ml">
+  <mat-form-field class="example-full-width">
+    <input matInput [(ngModel)]="filter" (ngModelChange)="updateFilter($event)" name="filter" placeholder="Filter here">
+  </mat-form-field>
+</ng-form>
+<mat-form-field  style="float: right">
+  <mat-label>Select a Brand</mat-label>
+  <mat-select [ngModel]="brands" (ngModelChange)="brandFilter($event)">
+    <mat-option *ngFor="let brand of brands" [value]="brand">{{brand}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
 <table mat-table matSort style="width: 100%;" [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="brand">

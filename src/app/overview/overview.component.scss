@@ -1,6 +1,6 @@
 
 
-button{ 
+button{
     margin: 10px 0;
     color:#000;
 }
@@ -28,4 +28,7 @@ table{
     &:nth-child(even){
         background-color: #eee;
     }
+}
+.ml{
+  margin-left: 10px;
 }
