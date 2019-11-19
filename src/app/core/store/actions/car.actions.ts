@@ -20,7 +20,6 @@ export enum ActionTypes {
   GetCar = '[Car] Get car from API',
   GetCarSuccess = '[Car] Get car from API Success',
   GetCarFailed = '[Car] Get car from API failed',
-  
 }
 
 export class LoadCars implements Action {
@@ -96,7 +95,7 @@ export class GetCar implements Action {
 export class GetCarSuccess implements Action {
   readonly type = ActionTypes.GetCarSuccess;
 
-  constructor(public car: Car){}
+  constructor(public car: Car) {}
 }
 
 export class GetCarFailed implements Action {
@@ -122,7 +121,7 @@ export type Actions =
   | AddCar
   | AddCarSuccess
   | AddCarFailed
-  
+
   | GetCar
   | GetCarSuccess
   | GetCarFailed;

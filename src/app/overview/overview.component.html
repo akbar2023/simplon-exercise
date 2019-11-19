@@ -43,12 +43,12 @@
 
   <ng-container matColumnDef="startOfSales">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'table.head.SOS' | translate}}</th>
-    <td mat-cell *matCellDef="let car"> {{car.startOfSales}} </td>
+    <td mat-cell *matCellDef="let car"> {{formatDate(car.startOfSales)}} </td>
   </ng-container>
 
   <ng-container matColumnDef="endOfSales">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'table.head.EOS' | translate}}</th>
-    <td mat-cell *matCellDef="let car"> {{car.endOfSales}} </td>
+    <td mat-cell *matCellDef="let car"> {{formatDate(car.endOfSales)}} </td>
   </ng-container>
 
   <ng-container matColumnDef="actions">

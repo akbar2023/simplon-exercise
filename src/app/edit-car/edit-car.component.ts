@@ -54,11 +54,11 @@ export class EditCarComponent implements OnInit, OnDestroy {
     this.carForm = this.fb.group({
       name: [car ? car.name : '', Validators.required],
       brand: [car ? car.brand : '', Validators.required],
-      horsePower: [car ? car.horsePower : '',],
+      horsePower: [car ? car.horsePower : '', ],
       price: [car ? car.price : '', Validators.min(0)],
-      fuelType: [car ? car.fuelType : '',],
-      startOfSales: [car ? car.startOfSales : '',],
-      endOfSales: [car ? car.endOfSales : '',]
+      fuelType: [car ? car.fuelType : '', ],
+      startOfSales: [car ? car.startOfSales : '', ],
+      endOfSales: [car ? car.endOfSales : '', ]
     });
   }
 
@@ -76,9 +76,10 @@ export class EditCarComponent implements OnInit, OnDestroy {
     this.sub = this.store.select(state => state.cars.selectedCar).subscribe(car => {
       this.createForm(car);
       this.cd.markForCheck();
-    })
+    });
     this.route.params.subscribe(params => {
-      this.id = parseInt(params['id']);
+      // tslint:disable-next-line: radix
+      this.id = parseInt(params.id);
       if (this.id) {
         this.store.dispatch(new GetCar(this.id));
         // this.carService.getCar(this.id).subscribe(car => {
@@ -87,7 +88,7 @@ export class EditCarComponent implements OnInit, OnDestroy {
         // });
 
       } else {
-        this.createForm()
+        this.createForm();
       }
     });
   }

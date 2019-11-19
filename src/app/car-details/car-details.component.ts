@@ -12,13 +12,13 @@ export class CarDetailsComponent implements OnInit {
 
   car: Car;
 
-  constructor(private carService: CarService, private route : ActivatedRoute) { }
+  constructor(private carService: CarService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      let id = params['id'];
+      const id = params.id;
       this.carService.getCar(id).subscribe(car => this.car = car);
-    });    
+    });
 
   }
 

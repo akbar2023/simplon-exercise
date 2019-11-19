@@ -13,9 +13,11 @@ export class DeleteConfirmComponent {
         @Inject(MAT_DIALOG_DATA) public data: any
     ) { }
 
+    // tslint:disable-next-line: use-life-cycle-interface
     ngOnInit() {
     // will log the entire data object
-    console.log(this.data); 
+    console.log(this.data);
+    // tslint:disable-next-line: no-unused-expression
     this.data;
     }
 

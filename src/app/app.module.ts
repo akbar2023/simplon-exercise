@@ -7,7 +7,7 @@ import { CoreModule } from '@core/core.module';
 // Material Design
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { MatTableModule } from '@angular/material/table'
+import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { OverviewComponent } from './overview/overview.component';
 import { CarDetailsComponent } from './car-details/car-details.component';
@@ -19,14 +19,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MomentDateModule } from "@angular/material-moment-adapter";
+import { MomentDateModule } from '@angular/material-moment-adapter';
 import { DeleteConfirmComponent } from './edit-car/delete-confirm/delete-confirm.component';
 import { MatDialogModule } from '@angular/material';
 import { MatSortModule } from '@angular/material/sort';
 
 // Ngx Translate
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 

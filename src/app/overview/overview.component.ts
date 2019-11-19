@@ -10,7 +10,8 @@ import { DeleteConfirmComponent } from 'app/edit-car/delete-confirm/delete-confi
 import { find, map, filter } from 'rxjs/operators';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import {Brand} from "@core/models/brand";
+import { Brand } from '@core/models/brand';
+import * as moment from 'moment';
 
 
 @Component({
@@ -47,10 +48,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource([]);
   sub: Subscription;
 
-  constructor(private carService: CarService,
-    private store: Store<State>,
-    private cd: ChangeDetectorRef,
-    private dialog: MatDialog) {
+  // Constructeur
+  constructor(private carService: CarService, private store: Store<State>, private cd: ChangeDetectorRef, private dialog: MatDialog) {
     this.cars$ = store.select('cars');
   }
 
@@ -72,12 +71,12 @@ export class OverviewComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  // Delete with confirm
-  deleteCar(id: number):void  {
-    let selectedCar$ = this.cars$.pipe(
+  // Delete car confirm
+  deleteCar(id: number): void {
+    const selectedCar$ = this.cars$.pipe(
       map(state => state.list.find(car => car.id === id))
     );
-    let dialogRef = this.dialog.open(DeleteConfirmComponent,
+    const dialogRef = this.dialog.open(DeleteConfirmComponent,
       {
         width: '350px',
         data: { car$: selectedCar$ }
@@ -88,19 +87,29 @@ export class OverviewComponent implements OnInit, OnDestroy {
         if (result) {
           this.store.dispatch(new DeleteCar(id));
         }
-      })
-
+      });
   }
 
+  // Upadtes cars overview with the filter input
   updateFilter(val: string) {
     this.filter = val;
-    // this.filter[0].toUpperCase();
     console.log(this.filter);
-    this.dataSource.data = this.cars.filter((car=> car.name.toLowerCase().includes(this.filter.toLowerCase())));
+    this.dataSource.data = this.cars.filter((car => car.name.toLowerCase().includes(this.filter.toLowerCase())));
   }
 
+  // Filter cars overview with brands with select
   brandFilter(brand: string) {
     this.filterBrand = brand;
-    this.dataSource.data = this.cars.filter((car=> car.brand.includes(this.filterBrand)));
+    this.dataSource.data = this.cars.filter((car => car.brand.includes(this.filterBrand)));
   }
+
+  // Change the date format from YYYY-MM-DD to DD/MM/YYYY
+  formatDate(date: string): string {
+    if (date) {
+      const parsedDate = moment(date, 'YYYY-MM-DD');
+      return parsedDate.format('DD/MM/YYYY');
+    }
+  }
+
+
 }

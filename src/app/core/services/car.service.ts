@@ -17,20 +17,18 @@ export class CarService {
 
   getCar(id: number): Observable<Car> {
     return this.http.get<Car>(this.baseUrl + id);
-  } 
-  
+  }
+
   updateCar(car: Car): Observable<Car> {
     return this.http.put<Car>(this.baseUrl, car);
   }
 
-  deleteCar (id: number): Observable<{}> {
+  deleteCar(id: number): Observable<{}> {
     return this.http.delete(this.baseUrl + id);
   }
-  
-  addCar (car: Car): Observable<Car> {
+
+  addCar(car: Car): Observable<Car> {
     return this.http.post<Car>(this.baseUrl, car);
   }
-
-
 
 }
