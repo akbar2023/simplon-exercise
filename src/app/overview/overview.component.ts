@@ -49,7 +49,12 @@ export class OverviewComponent implements OnInit, OnDestroy {
   sub: Subscription;
 
   // Constructeur
-  constructor(private carService: CarService, private store: Store<State>, private cd: ChangeDetectorRef, private dialog: MatDialog) {
+  constructor(
+    private carService: CarService,
+    private store: Store<State>,
+    private cd: ChangeDetectorRef,
+    private dialog: MatDialog
+  ) {
     this.cars$ = store.select('cars');
   }
 
